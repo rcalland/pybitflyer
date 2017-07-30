@@ -7,6 +7,7 @@ import hmac
 import hashlib
 import urllib
 from .exception import AuthException
+from requests.exceptions import RequestException
 
 
 class API(object):
@@ -50,7 +51,7 @@ class API(object):
                     response = s.get(url, params=params)
                 else:  # method == "POST":
                     response = s.post(url, data=json.dumps(params))
-        except requests.RequestException as e:
+        except RequestException as e:
             print(e)
             raise e
 
